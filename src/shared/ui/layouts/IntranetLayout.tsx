@@ -3,7 +3,6 @@ import { Link, Outlet } from 'react-router-dom';
 export default function IntranetLayout() {
   return (
     <div className="min-h-screen flex flex-col relative">
-      {/* Navbar Global */}
       <header className="absolute top-0 w-full z-50 px-8 py-6 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-vatco-primary rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
@@ -14,9 +13,9 @@ export default function IntranetLayout() {
           </span>
         </div>
         
-        {/* Navegación hacia las Features */}
         <nav className="hidden md:flex bg-white/70 backdrop-blur-md border border-white/50 px-8 py-3 rounded-full shadow-sm gap-8 text-sm font-semibold text-gray-600">
           <Link to="/" className="text-vatco-primary hover:text-vatco-primary/80 transition-colors">Inicio</Link>
+          <Link to="/eventos" className="hover:text-vatco-primary transition-colors">Eventos</Link>
           <Link to="/psicologia" className="hover:text-vatco-primary transition-colors">Psicología</Link>
           <Link to="/sst" className="hover:text-vatco-primary transition-colors">SST (Seguridad)</Link>
           <Link to="/tecnologia" className="hover:text-vatco-primary transition-colors">Tecnología</Link>
@@ -34,7 +33,6 @@ export default function IntranetLayout() {
         </div>
       </header>
 
-      {/* Aquí se renderiza el contenido de cada Feature (PortalInicio, PanelPsicologia, etc.) */}
       <div className="flex-1">
         <Outlet />
       </div>
