@@ -1,18 +1,24 @@
 import { Link } from 'react-router-dom';
+import elementoFlotante from '../../../../assets/images/shared/vive-logo.webp';
 
 export default function PortalInicio() {
   return (
     <>
-      {/* Hero Section */}
       <main className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 px-8 max-w-[1400px] mx-auto min-h-[85vh] flex flex-col lg:flex-row items-center justify-between">
         
-        {/* Izquierda: Tipografía masiva */}
         <div className="w-full lg:w-1/2 relative z-10">
-          <span className="text-vatco-primary font-bold tracking-widest uppercase text-xs mb-6 block">Portal Corporativo</span>
-          <h1 className="font-serif text-6xl lg:text-[5.5rem] leading-[1.05] tracking-tight font-extrabold text-vatco-text mb-8">
-            Un equipo, <br />
-            <span className="italic font-light text-gray-500">múltiples espacios.</span>
-          </h1>
+          <span className="text-vatco-primary font-bold tracking-widest uppercase text-xs mb-8 block">
+            Portal Corporativo
+          </span>
+
+          <div className="mb-10 animate-float">
+            <img 
+              src={elementoFlotante} 
+              alt="Vive Intranet Vatco" 
+              className="w-full max-w-sm lg:max-w-sm object-contain drop-shadow-2xl" 
+            />
+          </div>
+
           <p className="text-gray-600 text-lg md:text-xl max-w-md leading-relaxed mb-10 font-medium">
             Accede a noticias, recursos exclusivos y servicios de tus departamentos. Navega por los módulos diseñados para potenciar tu experiencia en Vatco.
           </p>

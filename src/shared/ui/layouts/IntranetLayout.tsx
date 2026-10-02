@@ -10,7 +10,7 @@ export default function IntranetLayout() {
             V
           </div>
           <span className="font-extrabold text-vatco-text tracking-tight text-lg">
-            Vatco<span className="font-normal opacity-50">Group</span>
+            Vive <span className="font-normal opacity-50">Vatco</span>
           </span>
         </div>
         
