@@ -1,0 +1,49 @@
+# Dependencias
+node_modules/
+.pnpm-store/
+.pnpm-debug.log*
+
+# Build / compilación
+/dist/
+/build/
+/.vite/
+/.cache/
+coverage/
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Variables de entorno
+.env
+.env.*
+!.env.example
+
+# Editor / sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos multimedia locales (se usarán desde un repositorio externo en el futuro)
+src/assets/modules/**
+!src/assets/modules/.gitkeep
+!src/assets/modules/**/.gitkeep
+
+src/assets/shared/**
+!src/assets/shared/.gitkeep
+
+# Archivos estáticos locales opcionales que no deben ir al repo
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.avif
+*.mp4
+*.mp3
+*.zip

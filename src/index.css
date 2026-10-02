@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Manrope", sans-serif;
+  --font-serif: "Playfair Display", serif;
+
+  --color-vatco-primary: #235286;
+  --color-vatco-secondary: #F8E04B;
+  --color-vatco-accent: #ce2c26;
+  --color-vatco-dark: #111827;      
+  --color-vatco-base: #F8FAFC;      
+  --color-vatco-text: #1E293B;      
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+@layer base {
+  body {
+    @apply bg-vatco-base text-vatco-text overflow-x-hidden selection:bg-vatco-secondary selection:text-vatco-primary;
+  }
+}
