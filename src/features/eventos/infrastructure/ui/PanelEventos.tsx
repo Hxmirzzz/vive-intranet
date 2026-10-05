@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion, type Variants } from 'framer-motion';
 
 const GALERIA = [
   { id: 1, type: 'img', src: './src/assets/images/modules/eventos/amor_y_amistad/1.jpeg', title: 'La Gran Entrega de Obsequios', desc: 'Momentos de expectativa, alegría y participación activa de todo el equipo durante la entrega de regalos.' },
@@ -10,16 +11,24 @@ const GALERIA = [
   { id: 7, type: 'img', src: './src/assets/images/modules/eventos/amor_y_amistad/6.jpeg', title: 'Cultura de Bienestar', desc: 'Consolidando una cultura organizacional basada en el cuidado mutuo, la empatía, el reconocimiento y el valor humano.' },
 ];
 
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 }
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 80, damping: 15 } }
+};
+
 export default function PanelEventos() {
   const [modalState, setModalState] = useState({ isOpen: false, src: '', title: '', desc: '' });
 
-  const openModal = (src: string, title: string, desc: string) => {
-    setModalState({ isOpen: true, src, title, desc });
-  };
-
-  const closeModal = () => {
-    setModalState({ ...modalState, isOpen: false });
-  };
+  const openModal = (src: string, title: string, desc: string) => setModalState({ isOpen: true, src, title, desc });
+  const closeModal = () => setModalState({ ...modalState, isOpen: false });
 
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => { if (e.key === 'Escape') closeModal(); };
@@ -28,64 +37,80 @@ export default function PanelEventos() {
   }, []);
 
   return (
-    <div className="pt-20 bg-gray-50 min-h-screen">
-      
-      {/* Hero Eventos */}
-      <div className="bg-gradient-to-r from-vatco-primary via-[#134074] to-vatco-primary text-white shadow-xl py-16 px-4 text-center relative overflow-hidden">
-        <div className="max-w-4xl mx-auto relative z-10">
+    <div className="pt-20 bg-vatco-base min-h-screen overflow-hidden">
+      <div className="bg-vatco-primary text-white py-24 px-4 text-center relative overflow-hidden">
+        <motion.div 
+          animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }} 
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-32 -left-32 w-96 h-96 bg-[#134074] rounded-full filter blur-[100px] opacity-70"
+        />
+        <motion.div 
+          animate={{ scale: [1, 1.5, 1], rotate: [0, -90, 0] }} 
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="absolute -bottom-32 -right-32 w-96 h-96 bg-vatco-secondary rounded-full filter blur-[120px] opacity-20"
+        />
+
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
+          className="max-w-4xl mx-auto relative z-10"
+        >
           <span className="inline-block bg-vatco-secondary text-vatco-primary font-bold text-xs uppercase tracking-widest px-4 py-1.5 rounded-full mb-4 shadow-md">Bienestar y Clima Laboral</span>
-          <h1 className="text-4xl md:text-6xl font-serif font-extrabold tracking-tight mb-4 drop-shadow-sm">🎁 Especial Amigo Secreto</h1>
+          <h1 className="text-5xl md:text-7xl font-serif font-extrabold tracking-tight mb-6 leading-tight">
+            Momentos <span className="text-vatco-secondary italic font-light">Inolvidables</span>
+          </h1>
           <p className="text-lg md:text-xl text-vatco-secondary font-semibold">VATCO Group Ltda. — Historial de Eventos</p>
-        </div>
-        <div className="absolute -top-12 -left-12 w-52 h-52 bg-[#134074] rounded-full filter blur-3xl opacity-60"></div>
-        <div className="absolute -bottom-12 -right-12 w-52 h-52 bg-vatco-secondary rounded-full filter blur-3xl opacity-25"></div>
+          <p className="text-lg md:text-xl text-gray-300 font-medium">Revive las celebraciones y pausas que nos unen como equipo.</p>
+        </motion.div>
       </div>
 
-      <main className="container mx-auto px-4 py-12 max-w-[1400px]">
-        <section className="bg-white rounded-[2rem] shadow-lg p-8 md:p-12 mb-16 border-t-4 border-vatco-secondary text-center">
-          <h2 className="text-2xl md:text-4xl font-bold text-vatco-primary mb-6 font-serif">Celebrando la Unión de Nuestra Gran Familia</h2>
-          <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
-            Los espacios de integración, recreación y pausa activa son fundamentales para fortalecer el clima laboral, la empatía y la salud mental en <strong className="text-vatco-primary">VATCO Group Ltda.</strong> Revivimos aquí los mejores momentos de nuestra celebración de Amigo Secreto.
-          </p>
-        </section>
-
-        <div className="mb-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <main className="container mx-auto px-4 py-16 max-w-[1400px]">
+        <motion.div 
+          initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }}
+          className="mb-12 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+        >
           <div>
-            <h3 className="text-3xl font-bold text-vatco-primary border-l-4 border-vatco-secondary pl-4">📸 Galería de Momentos Especiales</h3>
+            <h3 className="text-3xl font-bold text-vatco-primary border-l-4 border-vatco-secondary pl-4">Galería de Amigo Secreto</h3>
             <p className="text-gray-500 text-sm mt-2 pl-5">Instantes auténticos de nuestra celebración corporativa</p>
           </div>
           <span className="text-xs uppercase tracking-wider font-bold text-vatco-primary bg-vatco-primary/10 border border-vatco-primary/20 px-5 py-2.5 rounded-full shadow-sm">💡 Haz clic en cualquier foto para ampliarla</span>
-        </div>
+        </motion.div>
 
-        {/* Grid de Galería Iterativo */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {GALERIA.map((item) => (
-            <div 
+            <motion.div 
               key={item.id}
-              className={`bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group border border-gray-100 ${item.id === 7 ? 'sm:col-span-2 lg:col-span-3 max-w-2xl mx-auto w-full' : ''} ${item.type === 'img' ? 'cursor-pointer' : ''}`}
+              variants={itemVariants}
+              whileHover={{ y: -8, transition: { duration: 0.2 } }}
+              className={`bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-shadow border border-gray-100 relative group ${item.id === 7 ? 'sm:col-span-2 lg:col-span-3 max-w-3xl mx-auto w-full' : ''} ${item.type === 'img' ? 'cursor-pointer' : ''}`}
               onClick={() => item.type === 'img' && openModal(item.src, item.title, item.desc)}
             >
-              <div className="h-72 overflow-hidden relative bg-gray-100">
+              <div className="absolute inset-0 bg-gradient-to-br from-vatco-primary to-vatco-secondary opacity-0 group-hover:opacity-10 transition-opacity duration-500 z-10 pointer-events-none"></div>
+
+              <div className="h-72 overflow-hidden relative bg-gray-50">
                 {item.type === 'img' ? (
                   <>
-                    <img src={item.src} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                    <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-opacity duration-300 flex items-center justify-center">
-                      <span className="text-white bg-black/70 backdrop-blur-md px-6 py-2.5 rounded-full text-sm font-bold shadow-xl flex items-center gap-2">🔍 Ampliar Imagen</span>
-                    </div>
+                    <img src={item.src} alt={item.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" />
+                    <div className="absolute inset-0 bg-vatco-primary/0 group-hover:bg-vatco-primary/20 transition-colors duration-300 z-0"></div>
                   </>
                 ) : (
-                  <video className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" autoPlay loop muted playsInline>
+                  <video className="w-full h-full object-cover" autoPlay loop muted playsInline>
                     <source src={item.src} type="video/mp4" />
                   </video>
                 )}
               </div>
-              <div className="p-6 text-center sm:text-left">
-                <h4 className="font-bold text-xl text-vatco-primary mb-2">{item.title}</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+              <div className="p-6 relative z-20 bg-white">
+                <h4 className="font-bold text-lg text-vatco-primary mb-2 group-hover:text-vatco-accent transition-colors">{item.title}</h4>
+                <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </main>
 
       {/* Modal Declarativo de React (Se dibuja solo si modalState.isOpen es true) */}
