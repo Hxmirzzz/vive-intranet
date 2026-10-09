@@ -2,12 +2,17 @@ import { useState } from 'react';
 import QRCode from "react-qr-code";
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 
+const psicologiaBienestarImage = new URL(
+  '../../../../assets/images/modules/psicologia/psicologia-y-bienestar.webp',
+  import.meta.url,
+).href;
+
 const TEMAS = [
   {
     id: 1,
     tag: 'Tema 01',
     color: 'primary',
-    image: './src/img/psicologia/psicologia-y-bienestar.jpeg',
+    image: psicologiaBienestarImage,
     fallback: 'https://placehold.co/600x300/235286/F8E04B?text=Regulacion+Emocional',
     title: 'LIDERAR PARA CUIDAR',
     subtitle: 'El liderazgo que transforma, acompaña y protege en VATCO',
